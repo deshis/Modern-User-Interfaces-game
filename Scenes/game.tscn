@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvyicon5ka5g8"]
+
+[ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_fi37j"]
+[ext_resource type="Script" path="res://Scripts/obstacle_spawner.gd" id="2_s5txi"]
+[ext_resource type="Script" path="res://obstacle_destroyer.gd" id="3_kp4v2"]
+[ext_resource type="PackedScene" uid="uid://c2aejk1eh0vtm" path="res://Scenes/pause_menu.tscn" id="4_awaty"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uel2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmotp"]
+size = Vector2(423, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3xm3"]
+size = Vector2(415, 20)
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_fi37j")]
+
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+position = Vector2(674, 250)
+script = ExtResource("2_s5txi")
+
+[node name="ObstacleSpawnTimer" type="Timer" parent="ObstacleSpawner"]
+
+[node name="ObstacleDestroyer" type="Area2D" parent="."]
+position = Vector2(-715, 0)
+script = ExtResource("3_kp4v2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDestroyer"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_uel2r")
+
+[node name="Floor" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-374, 364)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(143.5, 0)
+shape = SubResource("RectangleShape2D_vmotp")
+
+[node name="Ceiling" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-373, -402)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(141, -1)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_n3xm3")
+
+[node name="pause_menu" parent="." instance=ExtResource("4_awaty")]
+
+[connection signal="timeout" from="ObstacleSpawner/ObstacleSpawnTimer" to="ObstacleSpawner" method="_on_obstacle_spawn_timer_timeout"]
+[connection signal="area_entered" from="ObstacleDestroyer" to="ObstacleDestroyer" method="_on_area_entered"]
