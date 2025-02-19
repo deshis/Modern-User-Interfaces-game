@@ -1,21 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5mk3axtkrjvh"]
+[gd_scene load_steps=7 format=3 uid="uid://b5mk3axtkrjvh"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_piaxu"]
-[ext_resource type="Texture2D" uid="uid://deflewbcqkmxx" path="res://icon.svg" id="1_y7tvw"]
+[ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_brhx0"]
+[ext_resource type="Script" path="res://Scripts/obstacle_spawner.gd" id="3_uwr0i"]
+[ext_resource type="Script" path="res://obstacle_destroyer.gd" id="4_q8ysp"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xyybk"]
-radius = 51.0
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uel2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmotp"]
+size = Vector2(423, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3xm3"]
+size = Vector2(415, 20)
 
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Player" type="CharacterBody2D" parent="."]
-script = ExtResource("1_piaxu")
+[node name="Player" parent="." instance=ExtResource("1_brhx0")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.789062, 0.789062)
-texture = ExtResource("1_y7tvw")
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+position = Vector2(674, 250)
+script = ExtResource("3_uwr0i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CircleShape2D_xyybk")
+[node name="ObstacleSpawnTimer" type="Timer" parent="ObstacleSpawner"]
+
+[node name="ObstacleDestroyer" type="Area2D" parent="."]
+position = Vector2(-715, 0)
+script = ExtResource("4_q8ysp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDestroyer"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_uel2r")
+
+[node name="Floor" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-374, 364)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(143.5, 0)
+shape = SubResource("RectangleShape2D_vmotp")
+
+[node name="Ceiling" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-373, -402)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(141, -1)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_n3xm3")
+
+[connection signal="timeout" from="ObstacleSpawner/ObstacleSpawnTimer" to="ObstacleSpawner" method="_on_obstacle_spawn_timer_timeout"]
+[connection signal="area_entered" from="ObstacleDestroyer" to="ObstacleDestroyer" method="_on_area_entered"]
