@@ -6,7 +6,16 @@ const JUMP_VELOCITY = -400.0
 var score := 0
 var alive := true
 
+var game_started = false
+
+func start_game():
+	game_started = true
+	velocity.y = JUMP_VELOCITY
+
 func _physics_process(delta: float) -> void:
+	if !game_started: 
+		return
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	

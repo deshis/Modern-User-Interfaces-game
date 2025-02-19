@@ -7,7 +7,7 @@ var obstacle = preload("res://Scenes/obstacle.tscn")
 @export var obstacle_delay := 1.0
 
 
-func _ready() -> void:
+func start() -> void:
 	obstacle_spawn_timer.start(obstacle_delay)
 
 
