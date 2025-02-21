@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5mk3axtkrjvh"]
 
-[ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_brhx0"]
-[ext_resource type="Script" path="res://Scripts/obstacle_spawner.gd" id="3_uwr0i"]
-[ext_resource type="Script" path="res://obstacle_destroyer.gd" id="4_q8ysp"]
+[ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_3cdyx"]
+[ext_resource type="Script" path="res://Scripts/obstacle_spawner.gd" id="2_j2vg8"]
+[ext_resource type="Script" path="res://Scripts/obstacle_destroyer.gd" id="3_ecw42"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uel2r"]
 
@@ -16,17 +16,17 @@ size = Vector2(415, 20)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("1_brhx0")]
+[node name="Player" parent="." instance=ExtResource("1_3cdyx")]
 
 [node name="ObstacleSpawner" type="Node2D" parent="."]
 position = Vector2(674, 250)
-script = ExtResource("3_uwr0i")
+script = ExtResource("2_j2vg8")
 
 [node name="ObstacleSpawnTimer" type="Timer" parent="ObstacleSpawner"]
 
 [node name="ObstacleDestroyer" type="Area2D" parent="."]
 position = Vector2(-715, 0)
-script = ExtResource("4_q8ysp")
+script = ExtResource("3_ecw42")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDestroyer"]
 rotation = 1.5708

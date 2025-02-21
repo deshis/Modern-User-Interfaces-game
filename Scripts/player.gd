@@ -8,9 +8,11 @@ var alive := true
 
 var game_started = false
 
+func _ready() -> void:
+	velocity.y = JUMP_VELOCITY
+
 func start_game():
 	game_started = true
-	velocity.y = JUMP_VELOCITY
 
 func _physics_process(delta: float) -> void:
 	if !game_started: 
