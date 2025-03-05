@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5mk3axtkrjvh"]
 
 [ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_3cdyx"]
-[ext_resource type="Script" path="res://Scripts/obstacle_spawner.gd" id="2_j2vg8"]
-[ext_resource type="Script" path="res://Scripts/obstacle_destroyer.gd" id="3_ecw42"]
+[ext_resource type="Script" uid="uid://uhfna7vdmnmv" path="res://Scripts/obstacle_spawner.gd" id="2_j2vg8"]
+[ext_resource type="Script" uid="uid://dj0cxxahjyxm0" path="res://Scripts/obstacle_destroyer.gd" id="3_ecw42"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uel2r"]
 
