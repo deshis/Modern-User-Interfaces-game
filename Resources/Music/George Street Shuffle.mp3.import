@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://leqq5jo5nlhw"
+path="res://.godot/imported/George Street Shuffle.mp3-f1f647434caf91c22e75cc12d7be6c00.mp3str"
+
+[deps]
+
+source_file="res://Resources/Music/George Street Shuffle.mp3"
+dest_files=["res://.godot/imported/George Street Shuffle.mp3-f1f647434caf91c22e75cc12d7be6c00.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

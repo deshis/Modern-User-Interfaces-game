@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4llwjitoq4et"]
+[gd_scene load_steps=7 format=3 uid="uid://c4llwjitoq4et"]
 
 [ext_resource type="Script" uid="uid://dxhyst4urmbkp" path="res://Scripts/player.gd" id="1_64m34"]
 [ext_resource type="Texture2D" uid="uid://deflewbcqkmxx" path="res://icon.svg" id="2_xiwf2"]
+[ext_resource type="AudioStream" uid="uid://bubt8e2iddici" path="res://Resources/SFX/404793__owlstorm__retro-video-game-sfx-jump.wav" id="3_fkybt"]
+[ext_resource type="AudioStream" uid="uid://djw7shireuonq" path="res://Resources/SFX/350876__cabled_mess__coin_c_09.wav" id="4_x3wgy"]
+[ext_resource type="AudioStream" uid="uid://cx67asubskgia" path="res://Resources/SFX/340977__aceofspadesproduc100__tumble-knocking.wav" id="5_3smsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xyybk"]
 radius = 29.0
@@ -21,5 +24,17 @@ shape = SubResource("CircleShape2D_xyybk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xyybk")
+
+[node name="JumpAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fkybt")
+bus = &"SFX"
+
+[node name="PointAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_x3wgy")
+bus = &"SFX"
+
+[node name="DeathAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3smsa")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvyicon5ka5g8"]
+[gd_scene load_steps=13 format=3 uid="uid://cvyicon5ka5g8"]
 
 [ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_fi37j"]
 [ext_resource type="Script" uid="uid://r2ub4b42dgm7" path="res://Scripts/game_manager.gd" id="1_tapq1"]
 [ext_resource type="Script" uid="uid://uhfna7vdmnmv" path="res://Scripts/obstacle_spawner.gd" id="2_s5txi"]
 [ext_resource type="Script" uid="uid://dj0cxxahjyxm0" path="res://Scripts/obstacle_destroyer.gd" id="3_kp4v2"]
 [ext_resource type="PackedScene" uid="uid://c2aejk1eh0vtm" path="res://Scenes/pause_menu.tscn" id="4_awaty"]
+[ext_resource type="AudioStream" uid="uid://cfmfl61okkrvx" path="res://Resources/Music/Bicycle.mp3" id="6_h4fw4"]
+[ext_resource type="AudioStream" uid="uid://dn6v5kv80q38a" path="res://Resources/Music/Hackbeat.mp3" id="7_ldgsr"]
+[ext_resource type="AudioStream" uid="uid://leqq5jo5nlhw" path="res://Resources/Music/George Street Shuffle.mp3" id="8_o5yvi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uel2r"]
 
@@ -13,6 +16,13 @@ size = Vector2(423, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3xm3"]
 size = Vector2(415, 20)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_rfjv2"]
+shuffle = true
+stream_count = 3
+stream_0 = ExtResource("6_h4fw4")
+stream_1 = ExtResource("7_ldgsr")
+stream_2 = ExtResource("8_o5yvi")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_tapq1")
@@ -71,6 +81,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Start by pressing space or left click"
 horizontal_alignment = 1
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamPlaylist_rfjv2")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="ObstacleSpawner/ObstacleSpawnTimer" to="ObstacleSpawner" method="_on_obstacle_spawn_timer_timeout"]
 [connection signal="area_entered" from="ObstacleDestroyer" to="ObstacleDestroyer" method="_on_area_entered"]

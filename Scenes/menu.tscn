@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://op8hbj6nynuj"]
+[gd_scene load_steps=3 format=3 uid="uid://op8hbj6nynuj"]
 
 [ext_resource type="Script" uid="uid://cnvtkgpfeyjex" path="res://Scripts/menu.gd" id="1_2q54o"]
+[ext_resource type="AudioStream" uid="uid://ne7tcbyfys8y" path="res://Resources/Music/Mining by Moonlight.mp3" id="2_xhh6f"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -38,6 +39,13 @@ text = "Options"
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(568, 327)
+stream = ExtResource("2_xhh6f")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
