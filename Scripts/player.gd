@@ -47,6 +47,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if area.get_groups()[0] == "point":
 			score += 1
 			point_audio_stream_player.play()
+			get_parent().add_score()
 		elif area.get_groups()[0] == "enemy":
 			game_over()
 
@@ -55,4 +56,4 @@ func game_over() -> void:
 	death_audio_stream_player.play()
 	alive = false
 	velocity.y = JUMP_VELOCITY
-	print("YOU DIED with a score of "+str(score))
+	$"../CanvasLayer/ending_screen".show_screen(score)

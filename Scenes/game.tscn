@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvyicon5ka5g8"]
+[gd_scene load_steps=21 format=3 uid="uid://cvyicon5ka5g8"]
 
 [ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_fi37j"]
 [ext_resource type="Script" uid="uid://r2ub4b42dgm7" path="res://Scripts/game_manager.gd" id="1_tapq1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dj0cxxahjyxm0" path="res://Scripts/obstacle_destroyer.gd" id="3_kp4v2"]
 [ext_resource type="PackedScene" uid="uid://c2aejk1eh0vtm" path="res://Scenes/pause_menu.tscn" id="4_awaty"]
 [ext_resource type="AudioStream" uid="uid://cfmfl61okkrvx" path="res://Resources/Music/Bicycle.mp3" id="6_h4fw4"]
+[ext_resource type="Script" uid="uid://nfknijicn41q" path="res://Scripts/ending_screen.gd" id="6_ldgsr"]
 [ext_resource type="AudioStream" uid="uid://dn6v5kv80q38a" path="res://Resources/Music/Hackbeat.mp3" id="7_ldgsr"]
 [ext_resource type="AudioStream" uid="uid://leqq5jo5nlhw" path="res://Resources/Music/George Street Shuffle.mp3" id="8_o5yvi"]
 
@@ -16,6 +17,109 @@ size = Vector2(423, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3xm3"]
 size = Vector2(415, 20)
+
+[sub_resource type="Animation" id="Animation_v158k"]
+resource_name = "fade_in"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("score:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h4fw4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start_text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(442.5, 312.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("score:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ending_screen/Border:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ldgsr"]
+resource_name = "start_text"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start_text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(442.5, 312.5), Vector2(442.5, 320), Vector2(442.5, 312.5), Vector2(442.5, 305), Vector2(442.5, 312.5)]
+}
+
+[sub_resource type="Animation" id="Animation_o5yvi"]
+resource_name = "ending_screen"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ending_screen/Border:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 2.2974),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ldgsr"]
+_data = {
+&"RESET": SubResource("Animation_h4fw4"),
+&"ending_screen": SubResource("Animation_o5yvi"),
+&"fade_in": SubResource("Animation_v158k"),
+&"start_text": SubResource("Animation_ldgsr")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_v158k"]
+font_size = 50
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5yvi"]
+bg_color = Color(1, 0.615686, 0.105882, 1)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_rfjv2"]
 shuffle = true
@@ -63,24 +167,114 @@ shape = SubResource("RectangleShape2D_n3xm3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_ldgsr")
+}
+
+[node name="score" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_top = 20.0
+offset_right = 1152.0
+offset_bottom = 89.0
+size_flags_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_v158k")
+horizontal_alignment = 1
+
+[node name="start_text" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = -11.5
+offset_right = 133.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Start by pressing space or left click"
+horizontal_alignment = 1
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("4_awaty")]
+
+[node name="ending_screen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 20.0
+offset_right = 1152.0
+offset_bottom = 628.0
+script = ExtResource("6_ldgsr")
+
+[node name="Border" type="Panel" parent="CanvasLayer/ending_screen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.344
+anchor_top = 0.277
+anchor_right = 0.656
+anchor_bottom = 0.723
+offset_left = 0.211975
+offset_top = 0.0839996
+offset_right = -0.212036
+offset_bottom = -0.0840454
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ending_screen/Border"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="pause_menu" parent="CanvasLayer/MarginContainer" instance=ExtResource("4_awaty")]
+[node name="BG" type="Panel" parent="CanvasLayer/ending_screen/Border/MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5yvi")
 
-[node name="start_text" type="Label" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 96.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Start by pressing space or left click"
+theme_override_font_sizes/font_size = 20
+text = "score"
 horizontal_alignment = 1
+
+[node name="score" type="Label" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_v158k")
+horizontal_alignment = 1
+
+[node name="padding?!" type="Control" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Play_Again" type="Button" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Play Again"
+
+[node name="Menu" type="Button" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamPlaylist_rfjv2")
@@ -89,3 +283,5 @@ bus = &"Music"
 
 [connection signal="timeout" from="ObstacleSpawner/ObstacleSpawnTimer" to="ObstacleSpawner" method="_on_obstacle_spawn_timer_timeout"]
 [connection signal="area_entered" from="ObstacleDestroyer" to="ObstacleDestroyer" method="_on_area_entered"]
+[connection signal="pressed" from="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer/HBoxContainer/Play_Again" to="CanvasLayer/ending_screen" method="_on_play_again_pressed"]
+[connection signal="pressed" from="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer/HBoxContainer/Menu" to="CanvasLayer/ending_screen" method="_on_menu_pressed"]
