@@ -209,10 +209,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -133.5
-offset_top = -11.5
-offset_right = 534.5
-offset_bottom = 40.5
+offset_left = -334.0
+offset_top = 95.8645
+offset_right = 334.0
+offset_bottom = 147.865
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -223,6 +223,7 @@ horizontal_alignment = 1
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("4_awaty")]
 
 [node name="ending_screen" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = 20.0
