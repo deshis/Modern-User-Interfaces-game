@@ -3,6 +3,7 @@ extends Control
 @onready var scorelabel = $Border/MarginContainer/BG/VBoxContainer/score
 
 func show_screen(score):
+	visible = true
 	$"../score".visible = false
 	scorelabel.text = str(score)
 	$"../AnimationPlayer".play("ending_screen")

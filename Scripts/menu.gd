@@ -1,5 +1,7 @@
 extends Control
 
+@onready var mainScreen = $MainScreen
+@onready var creditsScreen = $Credits
 
 #Play button
 func _on_play_pressed() -> void:
@@ -17,4 +19,10 @@ func _on_quit_pressed() -> void:
 
 
 func _on_credits_pressed() -> void:
-	pass # Replace with function body.
+	mainScreen.visible = false
+	creditsScreen.visible = true
+
+
+func _on_back_pressed() -> void:
+	mainScreen.visible = true
+	creditsScreen.visible = false

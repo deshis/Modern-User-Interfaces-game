@@ -56,4 +56,5 @@ func game_over() -> void:
 	death_audio_stream_player.play()
 	alive = false
 	velocity.y = JUMP_VELOCITY
+	$"../CanvasLayer/pause_menu".game_end()
 	$"../CanvasLayer/ending_screen".show_screen(score)

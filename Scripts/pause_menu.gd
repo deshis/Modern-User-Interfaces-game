@@ -1,5 +1,12 @@
 extends Control
 
+var game_ongoing = false
+
+func game_start(): game_ongoing = true
+
+func game_end(): game_ongoing = false
+	
+
 func resume():
 	visible = false
 	get_tree().paused = false
@@ -20,6 +27,6 @@ func _on_resume_pressed() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") && game_ongoing:
 		@warning_ignore("standalone_ternary") #cuh...
 		resume() if get_tree().paused else pause()

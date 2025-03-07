@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvyicon5ka5g8"]
+[gd_scene load_steps=25 format=3 uid="uid://cvyicon5ka5g8"]
 
 [ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_fi37j"]
 [ext_resource type="Script" uid="uid://r2ub4b42dgm7" path="res://Scripts/game_manager.gd" id="1_tapq1"]
@@ -8,7 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://cfmfl61okkrvx" path="res://Resources/Music/Bicycle.mp3" id="6_h4fw4"]
 [ext_resource type="Script" uid="uid://nfknijicn41q" path="res://Scripts/ending_screen.gd" id="6_ldgsr"]
 [ext_resource type="AudioStream" uid="uid://dn6v5kv80q38a" path="res://Resources/Music/Hackbeat.mp3" id="7_ldgsr"]
+[ext_resource type="FontFile" uid="uid://cmjdwokqjj2hd" path="res://SourGummy-SemiBold.ttf" id="7_o5yvi"]
 [ext_resource type="AudioStream" uid="uid://leqq5jo5nlhw" path="res://Resources/Music/George Street Shuffle.mp3" id="8_o5yvi"]
+[ext_resource type="Theme" uid="uid://cd6f3ggwx64uf" path="res://button_theme.tres" id="8_rku1e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uel2r"]
 
@@ -83,10 +85,10 @@ tracks/0/path = NodePath("start_text:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"times": PackedFloat32Array(0, 0.266667, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(442.5, 312.5), Vector2(442.5, 320), Vector2(442.5, 312.5), Vector2(442.5, 305), Vector2(442.5, 312.5)]
+"values": [Vector2(242, 412.5), Vector2(242, 420), Vector2(242, 412.5), Vector2(242, 405), Vector2(242, 412.5)]
 }
 
 [sub_resource type="Animation" id="Animation_o5yvi"]
@@ -114,12 +116,31 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_v158k"]
+font = ExtResource("7_o5yvi")
 font_size = 50
-outline_size = 6
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5yvi"]
+font = ExtResource("7_o5yvi")
+font_size = 30
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5yvi"]
 bg_color = Color(1, 0.615686, 0.105882, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rku1e"]
+font = ExtResource("7_o5yvi")
+font_size = 30
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_rfjv2"]
 shuffle = true
@@ -178,7 +199,7 @@ offset_top = 20.0
 offset_right = 1152.0
 offset_bottom = 89.0
 size_flags_vertical = 0
-text = "0"
+text = "1"
 label_settings = SubResource("LabelSettings_v158k")
 horizontal_alignment = 1
 
@@ -190,12 +211,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -133.5
 offset_top = -11.5
-offset_right = 133.5
-offset_bottom = 11.5
+offset_right = 534.5
+offset_bottom = 40.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "Start by pressing space or left click"
+label_settings = SubResource("LabelSettings_o5yvi")
 horizontal_alignment = 1
 
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("4_awaty")]
@@ -241,39 +263,38 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_o5yvi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 96.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 text = "score"
+label_settings = SubResource("LabelSettings_rku1e")
 horizontal_alignment = 1
 
 [node name="score" type="Label" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_v158k")
 horizontal_alignment = 1
 
-[node name="padding?!" type="Control" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Play_Again" type="Button" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("8_rku1e")
 text = "Play Again"
 
 [node name="Menu" type="Button" parent="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("8_rku1e")
 text = "Main Menu"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
