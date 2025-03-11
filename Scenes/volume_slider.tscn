@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://boi5iknppxcng"]
+
+[ext_resource type="Script" uid="uid://c4l5ic4wwcn5q" path="res://Scripts/volume_slider.gd" id="1_0rqdt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrd8"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.968627, 0.345098, 0.52549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbdvm"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.968627, 0.345098, 0.52549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3rjx"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.623529, 0.0705882, 0.286275, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_6swd7"]
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_jsrd8")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_wbdvm")
+HSlider/styles/slider = SubResource("StyleBoxFlat_q3rjx")
+
+[node name="volume_slider" type="HSlider"]
+custom_minimum_size = Vector2(300, 0)
+theme = SubResource("Theme_6swd7")
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_0rqdt")

@@ -20,22 +20,6 @@ size = Vector2(423, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3xm3"]
 size = Vector2(415, 20)
 
-[sub_resource type="Animation" id="Animation_v158k"]
-resource_name = "fade_in"
-length = 0.35
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("score:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_h4fw4"]
 length = 0.001
 tracks/0/type = "value"
@@ -75,22 +59,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ldgsr"]
-resource_name = "start_text"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("start_text:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(242, 412.5), Vector2(242, 420), Vector2(242, 412.5), Vector2(242, 405), Vector2(242, 412.5)]
-}
-
 [sub_resource type="Animation" id="Animation_o5yvi"]
 resource_name = "ending_screen"
 length = 0.4
@@ -107,6 +75,38 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_v158k"]
+resource_name = "fade_in"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("score:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ldgsr"]
+resource_name = "start_text"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start_text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 600), Vector2(0, 620), Vector2(0, 600), Vector2(0, 580), Vector2(0, 600)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ldgsr"]
 _data = {
 &"RESET": SubResource("Animation_h4fw4"),
@@ -117,7 +117,7 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_v158k"]
 font = ExtResource("7_o5yvi")
-font_size = 50
+font_size = 70
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 3
@@ -133,11 +133,11 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5yvi"]
-bg_color = Color(1, 0.615686, 0.105882, 1)
+bg_color = Color(0.515907, 0.84929, 0.575696, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rku1e"]
 font = ExtResource("7_o5yvi")
-font_size = 30
+font_size = 50
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 2)
@@ -195,27 +195,29 @@ libraries = {
 
 [node name="score" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
-offset_top = 20.0
-offset_right = 1152.0
-offset_bottom = 89.0
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 65.0
+grow_horizontal = 2
 size_flags_vertical = 0
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_v158k")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="start_text" type="Label" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -334.0
-offset_top = 95.8645
-offset_right = 334.0
-offset_bottom = 147.865
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 442.5
+offset_top = -407.5
+offset_right = 442.5
+offset_bottom = -368.5
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
+grow_vertical = 0
+size_flags_vertical = 8
 text = "Start by pressing space or left click"
 label_settings = SubResource("LabelSettings_o5yvi")
 horizontal_alignment = 1
@@ -225,10 +227,11 @@ horizontal_alignment = 1
 [node name="ending_screen" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_top = 20.0
-offset_right = 1152.0
-offset_bottom = 628.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("6_ldgsr")
 
 [node name="Border" type="Panel" parent="CanvasLayer/ending_screen"]

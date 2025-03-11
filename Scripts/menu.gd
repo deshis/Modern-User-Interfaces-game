@@ -30,11 +30,6 @@ func _on_back_pressed() -> void:
 	optionsScreen.visible = false
 	creditsScreen.visible = false
 
-
-func _on_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(0, value)
-
-
 func _on_resolution_item_selected(index: int) -> void:
 	match index:
 		0:
@@ -43,3 +38,7 @@ func _on_resolution_item_selected(index: int) -> void:
 			DisplayServer.window_set_size(Vector2i(1280, 720))
 		2:
 			DisplayServer.window_set_size(Vector2i(800, 600))
+
+
+func _on_fullscreen_toggle_toggled(toggled_on: bool) -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WINDOW_MODE_WINDOWED)
