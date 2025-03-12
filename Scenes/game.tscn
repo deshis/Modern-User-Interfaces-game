@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cvyicon5ka5g8"]
+[gd_scene load_steps=28 format=3 uid="uid://cvyicon5ka5g8"]
 
 [ext_resource type="PackedScene" uid="uid://c4llwjitoq4et" path="res://Scenes/player.tscn" id="1_fi37j"]
 [ext_resource type="Script" uid="uid://r2ub4b42dgm7" path="res://Scripts/game_manager.gd" id="1_tapq1"]
@@ -11,6 +11,14 @@
 [ext_resource type="FontFile" uid="uid://cmjdwokqjj2hd" path="res://SourGummy-SemiBold.ttf" id="7_o5yvi"]
 [ext_resource type="AudioStream" uid="uid://leqq5jo5nlhw" path="res://Resources/Music/George Street Shuffle.mp3" id="8_o5yvi"]
 [ext_resource type="Theme" uid="uid://cd6f3ggwx64uf" path="res://button_theme.tres" id="8_rku1e"]
+[ext_resource type="Script" uid="uid://dm2x6q6bggvec" path="res://Scripts/cloud_spawner.gd" id="12_rku1e"]
+
+[sub_resource type="Gradient" id="Gradient_o5yvi"]
+offsets = PackedFloat32Array(0.0361446, 1)
+colors = PackedColorArray(0.427451, 0.65098, 0.882353, 1, 0.763768, 0.859892, 0.963506, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rku1e"]
+gradient = SubResource("Gradient_o5yvi")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uel2r"]
 
@@ -151,6 +159,30 @@ stream_2 = ExtResource("8_o5yvi")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_tapq1")
+
+[node name="BackgroundGradient" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -651.0
+offset_top = -368.0
+offset_right = -395.0
+offset_bottom = -367.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+scale = Vector2(2.95412, -1307.76)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture1D_rku1e")
+
+[node name="CloudSpawner" type="Node2D" parent="."]
+position = Vector2(674, -3)
+script = ExtResource("12_rku1e")
+
+[node name="ObstacleSpawnTimer" type="Timer" parent="CloudSpawner"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(4, 10)
@@ -306,6 +338,7 @@ stream = SubResource("AudioStreamPlaylist_rfjv2")
 autoplay = true
 bus = &"Music"
 
+[connection signal="timeout" from="CloudSpawner/ObstacleSpawnTimer" to="CloudSpawner" method="_on_obstacle_spawn_timer_timeout"]
 [connection signal="timeout" from="ObstacleSpawner/ObstacleSpawnTimer" to="ObstacleSpawner" method="_on_obstacle_spawn_timer_timeout"]
 [connection signal="area_entered" from="ObstacleDestroyer" to="ObstacleDestroyer" method="_on_area_entered"]
 [connection signal="pressed" from="CanvasLayer/ending_screen/Border/MarginContainer/BG/VBoxContainer/HBoxContainer/Play_Again" to="CanvasLayer/ending_screen" method="_on_play_again_pressed"]

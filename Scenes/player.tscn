@@ -1,29 +1,33 @@
 [gd_scene load_steps=7 format=3 uid="uid://c4llwjitoq4et"]
 
 [ext_resource type="Script" uid="uid://dxhyst4urmbkp" path="res://Scripts/player.gd" id="1_64m34"]
-[ext_resource type="Texture2D" uid="uid://deflewbcqkmxx" path="res://icon.svg" id="2_xiwf2"]
+[ext_resource type="Texture2D" uid="uid://d04ax6f24kiti" path="res://Resources/Textures/bird_wing_up.png" id="2_fkybt"]
 [ext_resource type="AudioStream" uid="uid://bubt8e2iddici" path="res://Resources/SFX/404793__owlstorm__retro-video-game-sfx-jump.wav" id="3_fkybt"]
 [ext_resource type="AudioStream" uid="uid://djw7shireuonq" path="res://Resources/SFX/350876__cabled_mess__coin_c_09.wav" id="4_x3wgy"]
 [ext_resource type="AudioStream" uid="uid://cx67asubskgia" path="res://Resources/SFX/340977__aceofspadesproduc100__tumble-knocking.wav" id="5_3smsa"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xyybk"]
-radius = 29.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkybt"]
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-232, 0)
 script = ExtResource("1_64m34")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.447266, 0.447266)
-texture = ExtResource("2_xiwf2")
+texture = ExtResource("2_fkybt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_xyybk")
+position = Vector2(-10, -5)
+rotation = 1.5708
+scale = Vector2(1.8, 2.4)
+shape = SubResource("CapsuleShape2D_fkybt")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_xyybk")
+position = Vector2(-10, -5)
+rotation = 1.5708
+scale = Vector2(1.8, 2.4)
+shape = SubResource("CapsuleShape2D_fkybt")
 
 [node name="JumpAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fkybt")
@@ -37,4 +41,9 @@ bus = &"SFX"
 stream = ExtResource("5_3smsa")
 bus = &"SFX"
 
+[node name="WingFlapTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="WingFlapTimer" to="." method="_on_wing_flap_timer_timeout"]

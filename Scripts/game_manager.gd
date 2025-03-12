@@ -13,9 +13,11 @@ func _process(_delta: float) -> void:
 		game_started = true
 		$Player.start_game()
 		$ObstacleSpawner.start()
+		$CloudSpawner.start()
 		$CanvasLayer/start_text.visible = false
 		$CanvasLayer/AnimationPlayer.play("fade_in")
 		$CanvasLayer/pause_menu.game_start()
+
 
 func add_score():
 	score+=1

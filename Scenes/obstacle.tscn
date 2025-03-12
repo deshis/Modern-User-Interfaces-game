@@ -5,10 +5,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xbedi"]
 size = Vector2(55, 594)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nwxtb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_15o2q"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pu6nj"]
-specular_texture = SubResource("CompressedTexture2D_nwxtb")
+specular_texture = SubResource("CompressedTexture2D_15o2q")
+specular_color = Color(0, 0, 0, 1)
+specular_shininess = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x54xr"]
 size = Vector2(20, 186)
@@ -24,21 +26,64 @@ position = Vector2(-1, -738)
 position = Vector2(0, 296.5)
 shape = SubResource("RectangleShape2D_xbedi")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Top"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-0.808655, 291.454)
+scale = Vector2(68.3827, 606.908)
+texture = SubResource("CanvasTexture_pu6nj")
+
 [node name="Sprite2D" type="Sprite2D" parent="Top"]
-position = Vector2(-2.38419e-07, 296.5)
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-0.808655, 291.454)
 scale = Vector2(54, 593)
 texture = SubResource("CanvasTexture_pu6nj")
 
+[node name="Sprite2D3" type="Sprite2D" parent="Top"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-1, 574.74)
+rotation = 1.5708
+scale = Vector2(41.4807, 102.302)
+texture = SubResource("CanvasTexture_pu6nj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Top"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-1, 574.74)
+rotation = 1.5708
+scale = Vector2(28.8037, 89.0671)
+texture = SubResource("CanvasTexture_pu6nj")
+
 [node name="Bottom" type="Area2D" parent="." groups=["enemy"]]
-position = Vector2(0, 43)
+position = Vector2(-3, 636)
+rotation = 3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom" groups=["enemy"]]
 position = Vector2(0, 296.5)
 shape = SubResource("RectangleShape2D_xbedi")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Bottom"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-0.808655, 291.454)
+scale = Vector2(68.3827, 606.908)
+texture = SubResource("CanvasTexture_pu6nj")
+
 [node name="Sprite2D" type="Sprite2D" parent="Bottom"]
-position = Vector2(-2.38419e-07, 296.5)
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-0.808655, 291.454)
 scale = Vector2(54, 593)
+texture = SubResource("CanvasTexture_pu6nj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Bottom"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-1, 574.74)
+rotation = 1.5708
+scale = Vector2(41.4807, 102.302)
+texture = SubResource("CanvasTexture_pu6nj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Bottom"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-1, 574.74)
+rotation = 1.5708
+scale = Vector2(28.8037, 89.0671)
 texture = SubResource("CanvasTexture_pu6nj")
 
 [node name="Center" type="Area2D" parent="." groups=["point"]]

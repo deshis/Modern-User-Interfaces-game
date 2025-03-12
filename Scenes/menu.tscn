@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://op8hbj6nynuj"]
+[gd_scene load_steps=10 format=3 uid="uid://op8hbj6nynuj"]
 
 [ext_resource type="Script" uid="uid://cnvtkgpfeyjex" path="res://Scripts/menu.gd" id="1_2q54o"]
 [ext_resource type="Theme" uid="uid://cd6f3ggwx64uf" path="res://button_theme.tres" id="2_cayip"]
 [ext_resource type="AudioStream" uid="uid://ne7tcbyfys8y" path="res://Resources/Music/Mining by Moonlight.mp3" id="2_xhh6f"]
 [ext_resource type="FontFile" uid="uid://cmjdwokqjj2hd" path="res://SourGummy-SemiBold.ttf" id="3_158mb"]
 [ext_resource type="PackedScene" uid="uid://boi5iknppxcng" path="res://Scenes/volume_slider.tscn" id="4_wwsa2"]
+
+[sub_resource type="Gradient" id="Gradient_o5yvi"]
+offsets = PackedFloat32Array(0.0361446, 1)
+colors = PackedColorArray(0.427451, 0.65098, 0.882353, 1, 0.764706, 0.858824, 0.964706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wwsa2"]
+gradient = SubResource("Gradient_o5yvi")
 
 [sub_resource type="LabelSettings" id="LabelSettings_wwsa2"]
 font = ExtResource("3_158mb")
@@ -30,6 +37,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2q54o")
+
+[node name="BackgroundGradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -651.0
+offset_top = -368.0
+offset_right = -395.0
+offset_bottom = -367.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+scale = Vector2(2.95412, -1307.76)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture1D_wwsa2")
 
 [node name="MainScreen" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://biev06b361be0"]
+
+[ext_resource type="Script" uid="uid://btlm6chc8sf1d" path="res://Scripts/cloud.gd" id="1_sm7h7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nwxtb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7fp4g"]
+specular_texture = SubResource("CompressedTexture2D_nwxtb")
+specular_color = Color(0, 0, 0, 1)
+specular_shininess = 0.0
+
+[node name="Cloud" type="Node2D"]
+script = ExtResource("1_sm7h7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.54902)
+texture = SubResource("CanvasTexture_7fp4g")
