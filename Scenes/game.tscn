@@ -188,6 +188,7 @@ script = ExtResource("12_rku1e")
 position = Vector2(4, 10)
 
 [node name="Player" parent="." instance=ExtResource("1_fi37j")]
+position = Vector2(-300, 0)
 
 [node name="ObstacleSpawner" type="Node2D" parent="."]
 position = Vector2(674, 250)
