@@ -21,12 +21,14 @@ var wing_down_texture = preload("res://Resources/Textures/bird_wing_down.png")
 func _ready() -> void:
 	velocity.y = JUMP_VELOCITY
 
+
 func start_game():
 	game_started = true
-	if alive: #???
+	if alive:
 		jump_audio_stream_player.play()
 		sprite_2d.set_texture(wing_down_texture)
 		wing_flap_timer.start()
+
 
 func _physics_process(delta: float) -> void:
 	if !game_started: 

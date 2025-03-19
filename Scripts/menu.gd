@@ -30,6 +30,7 @@ func _on_back_pressed() -> void:
 	optionsScreen.visible = false
 	creditsScreen.visible = false
 
+
 func _on_resolution_item_selected(index: int) -> void:
 	match index:
 		0:

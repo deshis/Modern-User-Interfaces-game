@@ -8,6 +8,7 @@ var score = 0
 func _ready() -> void:
 	$CanvasLayer/AnimationPlayer.play("start_text")
 
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and !game_started:
 		game_started = true

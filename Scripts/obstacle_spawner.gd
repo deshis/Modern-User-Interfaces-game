@@ -13,6 +13,7 @@ func start() -> void:
 		active = true
 		obstacle_spawn_timer.start(obstacle_spawn_time)
 
+
 func _on_obstacle_spawn_timer_timeout() -> void:
 	if active:
 		var instance = obstacle.instantiate()
