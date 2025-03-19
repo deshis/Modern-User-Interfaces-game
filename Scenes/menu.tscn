@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://op8hbj6nynuj"]
+[gd_scene load_steps=11 format=3 uid="uid://op8hbj6nynuj"]
 
 [ext_resource type="Script" uid="uid://cnvtkgpfeyjex" path="res://Scripts/menu.gd" id="1_2q54o"]
 [ext_resource type="Theme" uid="uid://cd6f3ggwx64uf" path="res://button_theme.tres" id="2_cayip"]
@@ -12,6 +12,8 @@ colors = PackedColorArray(0.427451, 0.65098, 0.882353, 1, 0.764706, 0.858824, 0.
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wwsa2"]
 gradient = SubResource("Gradient_o5yvi")
+
+[sub_resource type="Theme" id="Theme_jsrd8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wwsa2"]
 font = ExtResource("3_158mb")
@@ -106,7 +108,14 @@ theme_override_constants/margin_bottom = 30
 [node name="Label" type="Label" parent="Credits"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Sound effects:
+theme = SubResource("Theme_jsrd8")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+text = "Gameplay and graphics by Altti Äyräs
+
+UI by Evert Mäkinen
+
+Sound effects:
 
 Retro video game sfx - Jump by OwlStorm -- https://freesound.org/s/404793/ -- License: Creative Commons 0
 Tumble-knocking by AceOfSpadesProduc100 -- https://freesound.org/s/340977/ -- License: Attribution 4.0
