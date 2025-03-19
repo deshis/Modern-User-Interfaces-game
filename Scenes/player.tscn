@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://cx67asubskgia" path="res://Resources/SFX/340977__aceofspadesproduc100__tumble-knocking.wav" id="5_3smsa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkybt"]
+radius = 9.44444
+height = 29.1667
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-232, 0)
